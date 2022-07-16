@@ -9,7 +9,7 @@ const EditableRow = ({ form, index, ...props }) => (
   </EditableContext.Provider>
 );
 
-export const EditableFormRow = Form.create()(EditableRow);
+export const EditableFormRow = EditableRow;
 
 export class EditableCell extends React.Component {
   state = {
@@ -41,17 +41,16 @@ export class EditableCell extends React.Component {
     const { children, dataIndex, record, title } = this.props;
     const { editing } = this.state;
     return editing ? (
-      <Form.Item style={{ margin: 0 }}>
-        {form.getFieldDecorator(dataIndex, {
-          rules: [
-            {
-              required: true,
-              message: `${title} is required.`,
-            },
-          ],
-          initialValue: record[dataIndex],
-        })(<Input ref={node => (this.input = node)} onPressEnter={this.save} onBlur={this.save} />)}
-      </Form.Item>
+        <Form>
+          <Form.Item style={{ margin: 0 }} name={dataIndex} rules={[
+                {
+                  required: true,
+                  message: `${title} is required.`,
+                },
+              ]} initialValue={record[dataIndex]}>
+            <Input ref={node => (this.input = node)} onPressEnter={this.save} onBlur={this.save} />
+          </Form.Item>
+        </Form>
     ) : (
       <div
         className="editable-cell-value-wrap"
