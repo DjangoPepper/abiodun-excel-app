@@ -1,6 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import "antd/dist/antd.css"
+//-fred import "antd/dist/antd.css"
+//+fred
+import "antd/dist/antd.min.css"
 import ExcelPage from "./components/excelPage"
 
 function App() {
