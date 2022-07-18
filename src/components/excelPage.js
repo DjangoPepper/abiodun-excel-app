@@ -7,6 +7,18 @@ import { ArrowRightOutlined, ArrowLeftOutlined, DeleteFilled, PlusCircleFilled, 
 import { ExcelRenderer } from "react-excel-renderer";
 import { EditableFormRow, EditableCell } from "../utils/editable";
 
+import { saveAs } from "file-saver";
+/*
+function safetest() {
+  workbook.xlsx.writeBuffer().then(function(buffer) {
+    // done
+    console.log(buffer);
+
+    const blob = new Blob([buffer], { type: "applicationi/xlsx" });
+    saveAs(blob, "myexcel.xlsx");
+  });
+} */
+
 export default class ExcelPage extends Component {
   constructor(props) {
     super(props);
@@ -120,7 +132,7 @@ export default class ExcelPage extends Component {
       )
     ) {
       this.setState({
-        errorMessage: "Unknown file format. Only Excel files are uploaded!"
+        errorMessage: "Unknown file format. Only Excel files are allowed!"
       });
       return false;
     }
@@ -168,6 +180,7 @@ export default class ExcelPage extends Component {
     const rows = [...this.state.rows];
     this.setState({ rows: rows.filter(item => item.key !== key) });
   };
+
   handleAdd = () => {
     const { count, rows } = this.state;
     const newData = {
@@ -206,7 +219,7 @@ export default class ExcelPage extends Component {
     });
     return (
       <>
-        <h1>Importing Excel Component</h1>
+        <h1>WeenPoint</h1>
         <Row gutter={16}>
           <Col
             span={8}
@@ -221,7 +234,7 @@ export default class ExcelPage extends Component {
               <div className="page-title">Upload User Data</div>
             </div>
           </Col>
-          <Col span={8}>
+          {/* <Col span={8}>
             <a
               href="https://res.cloudinary.com/bryta/raw/upload/v1562751445/Sample_Excel_Sheet_muxx6s.xlsx"
               target="_blank"
@@ -230,7 +243,7 @@ export default class ExcelPage extends Component {
             >
               Sample excel sheet
             </a>
-          </Col>
+          </Col> */}
           <Col
             span={8}
             align="right"
@@ -241,7 +254,7 @@ export default class ExcelPage extends Component {
                 <Button
                   onClick={this.handleAdd}
                   size="large"
-                  type="info"
+                  type="primary"
                   style={{ marginBottom: 16 }}
                 >
                   <PlusCircleFilled/>Add a row
@@ -266,11 +279,21 @@ export default class ExcelPage extends Component {
             onRemove={() => this.setState({ rows: [] })}
             multiple={false}
           >
-            <Button>
-              <DownloadOutlined />Click to Download Excel File
+            <Button
+              size="large"
+              type="primary"
+              style={{ marginBottom: 16, marginLeft: 10 }}
+            >
+              <UploadOutlined />Click to Upload Excel File
             </Button>
           </Upload>
+
+          {/* <button onClick={safetest}>Excel</button> */}
+
         </div>
+
+
+
         <div style={{ marginTop: 20 }}>
           <Table
             components={components}
