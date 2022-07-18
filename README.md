@@ -1,3 +1,10 @@
+# TODO LIST :
+ADD A SORT BUTTON ON THE RIGHT SIDE OF RANG REFERENCE, ETC IN ASCENDING/DESCENDING ORDER
+ADD A FILE SAVER/UPLOAD BUTTON
+ADD A DRAG AND DROP OF REFERENCE TO STOCK, PREPA OR DESTINATION
+ADD A SUM AND COUNT CALCULATION OF PREPA AND DESTINATION
+ADD A THE CAPACITY TO ADD COMPLEMENTS FILE 100 001 for first complement's rang THEN 200 001 for second complements rang.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
