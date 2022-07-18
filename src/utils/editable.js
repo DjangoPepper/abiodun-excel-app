@@ -42,7 +42,7 @@ export class EditableCell extends React.Component {
     const { editing } = this.state;
     return editing ? (
         <Form>
-          <Form.Item style={{ margin: 0 }} name={dataIndex} rules={[
+          <Form.Item style={{ margin: 0 }} rang={dataIndex} rules={[
                 {
                   required: true,
                   message: `${title} is required.`,

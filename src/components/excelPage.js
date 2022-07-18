@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-// import { Table, Button, Popconfirm, Row, Col, Icon, Upload } from "antd";
 import { Table, Button, Popconfirm, Row, Col, Upload } from "antd";
-//+fred
-import Icon from '@ant-design/icons';
+import { ArrowRightOutlined, ArrowLeftOutlined, DeleteFilled, PlusCircleFilled, UploadOutlined, DownloadOutlined } from "@ant-design/icons"
+
 
 import { ExcelRenderer } from "react-excel-renderer";
 import { EditableFormRow, EditableCell } from "../utils/editable";
@@ -16,34 +15,53 @@ export default class ExcelPage extends Component {
       errorMessage: null,
       columns: [
         {
-          title: "NAME",
-          dataIndex: "name",
-          editable: true
+          title: "RANG",
+          dataIndex: "rang",
+          editable: false
         },
         {
-          title: "AGE",
-          dataIndex: "age",
-          editable: true
+          title: "REFERENCE",
+          dataIndex: "reference",
+          editable: false
         },
         {
-          title: "GENDER",
-          dataIndex: "gender",
-          editable: true
+          title: "POIDS",
+          dataIndex: "poids",
+          editable: false
         },
         {
-          title: "Action",
-          dataIndex: "action",
+          title: "PREPA",
+          dataIndex: "prepa",
+          editable: false
+        },
+        {
+          title: "DESTINATION",
+          dataIndex: "destination",
+          editable: false
+        },
+        {
+          title: "Vers",
+          dataIndex: "vers",
           render: (text, record) =>
             this.state.rows.length >= 1 ? (
               <Popconfirm
                 title="Sure to delete?"
                 onConfirm={() => this.handleDelete(record.key)}
               >
-                <Icon
-                  type="delete"
-                  theme="filled"
-                  style={{ color: "red", fontSize: "20px" }}
-                />
+                <ArrowRightOutlined style={{ color: "blue", fontSize: "20px" }} />
+              </Popconfirm>
+            ) : null
+        },
+        {
+          title: "STOCK",
+          dataIndex: "stock",
+          render: (text, record) =>
+            this.state.rows.length >= 1 ? (
+              <Popconfirm
+                title="Sure to delete?"
+                onConfirm={() => this.handleDelete(record.key)}
+              >
+              <ArrowLeftOutlined style={{ color: "purple", fontSize: "20px" }} />
               </Popconfirm>
             ) : null
         }
@@ -115,9 +133,9 @@ export default class ExcelPage extends Component {
           if (row && row !== "undefined") {
             newRows.push({
               key: index,
-              name: row[0],
-              age: row[1],
-              gender: row[2]
+              rang: row[0],
+              reference: row[1],
+              poids: row[2]
             });
           }
         });
@@ -153,9 +171,9 @@ export default class ExcelPage extends Component {
     const { count, rows } = this.state;
     const newData = {
       key: count,
-      name: "User's name",
-      age: "22",
-      gender: "Female"
+      rang: "Item's rang",
+      poids: "999999",
+      gender: "2012A"
     };
     this.setState({
       rows: [newData, ...rows],
@@ -225,8 +243,8 @@ export default class ExcelPage extends Component {
                   type="info"
                   style={{ marginBottom: 16 }}
                 >
-                  <Icon type="plus" />
-                  Add a row
+                  <PlusCircleFilled/>Add a row
+
                 </Button>{" "}
                 <Button
                   onClick={this.handleSubmit}
@@ -248,7 +266,7 @@ export default class ExcelPage extends Component {
             multiple={false}
           >
             <Button>
-              <Icon type="upload" /> Click to Upload Excel File
+              <DownloadOutlined />Click to Download Excel File
             </Button>
           </Upload>
         </div>
